@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090811">
+    <title>TestPilot AI | QA Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container">
+    <aside class="sidebar">
+        <a class="brand" href="#" data-go="dashboard" aria-label="TestPilot AI home">
+            <span class="brand-mark">✦</span>
+            <span><strong>TestPilot<span class="brand-ai">.AI</span></strong><small>QA INTELLIGENCE</small></span>
+        </a>
+
+        <nav class="side-nav" aria-label="Main navigation">
+            <p class="nav-heading">WORKSPACE</p>
+            <button class="nav-link active" data-page="dashboard"><span class="nav-icon">◈</span>Dashboard</button>
+            <button class="nav-link" data-page="analyzer"><span class="nav-icon">⌕</span>Requirement Analyzer</button>
+            <button class="nav-link" data-page="testcases"><span class="nav-icon">▤</span>Test Case Generator</button>
+            <button class="nav-link" data-page="bugreport"><span class="nav-icon">⚑</span>Bug Report Generator</button>
+            <button class="nav-link" data-page="summary"><span class="nav-icon">◷</span>Test Summary</button>
+            <button class="nav-link" data-page="history"><span class="nav-icon">↺</span>History</button>
+
+            <p class="nav-heading nav-heading-spaced">PREFERENCES</p>
+            <button class="nav-link" data-page="settings"><span class="nav-icon">⚙</span>Settings</button>
+
+            <p class="nav-heading nav-heading-spaced">MORE TOOLS</p>
+            <button class="nav-link" data-page="scenarios"><span class="nav-icon">⌘</span>Test Scenarios</button>
+            <button class="nav-link" data-page="documents"><span class="nav-icon">▧</span>QA Documents</button>
+            <button class="nav-link" data-page="impact"><span class="nav-icon">⤴</span>Change Impact</button>
+            <button class="nav-link" data-page="promptlab"><span class="nav-icon">✧</span>Prompt Lab</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="plan-card">
+                <span class="plan-icon">✦</span>
+                <strong>Your QA copilot</strong>
+                <p>Turn product ideas into confident releases.</p>
+                <span class="online-label"><i></i> QA workspace</span>
+            </div>
+            <div class="sidebar-user">
+                <span class="avatar avatar-small">KP</span>
+                <span><strong>Kimaya Pawar</strong><small>Personal workspace</small></span>
+                <button class="icon-button user-menu" aria-label="User menu">···</button>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="mobile-brand"><span class="brand-mark">✦</span> TestPilot<span class="brand-ai">.AI</span></div>
+            <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="page-title">Dashboard</strong></div>
+            <div class="topbar-actions">
+                <label class="global-search"><span>⌕</span><input id="globalSearch" type="search" placeholder="Search anything..."><kbd>⌘ K</kbd></label>
+                <button id="notificationBtn" class="icon-button notification-button" aria-label="Notifications">♧<i></i></button>
+                <div class="topbar-divider"></div>
+                <button class="top-user" data-go="settings">
+                    <span class="avatar">KP</span>
+                    <span class="top-user-copy"><strong>Kimaya Pawar</strong><small>QA Engineer</small></span>
+                    <span class="chevron">⌄</span>
+                </button>
+            </div>
+        </header>
+        <div class="notification-popover" id="notificationPopover" hidden>
+            <strong>You're all caught up</strong><p>New activity and updates will appear here.</p>
+        </div>
+
+        <div class="page-area">
+            <section class="page active" id="dashboard">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <span class="eyebrow"><span class="live-dot"></span> YOUR AI-POWERED QA WORKSPACE</span>
+                        <h1>Ship with confidence,<br><span>test with intelligence.</span></h1>
+                        <p>Turn requirements into reliable test coverage. Your next great release starts here.</p>
+                        <button class="primary-btn" data-go="analyzer">Analyze a requirement <span>→</span></button>
+                    </div>
+                    <div class="welcome-art" aria-hidden="true">
+                        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+                        <div class="glow-core">✦</div><span class="orbit-node node-one">✓</span><span class="orbit-node node-two">⌘</span><span class="orbit-node node-three">✧</span>
+                    </div>
+                    <div class="welcome-caption"><span class="caption-line"></span> Built for better software</div>
+                </div>
+
+                <div class="section-title-row">
+                    <div><h2>Workspace overview</h2><p>A quick look at your testing activity</p></div>
+                    <button class="text-button" data-go="summary">View test summary <span>→</span></button>
+                </div>
+                <div class="overview-grid">
+                    <article class="overview-card"><div class="metric-top"><span class="metric-icon violet-icon">⌕</span></div><p>Requirements analyzed</p><div class="metric-value" id="dashboardRequirements">0 <small>total</small></div><div class="mini-bars bars-violet" data-mini="analysis"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+                    <article class="overview-card"><div class="metric-top"><span class="metric-icon blue-icon">▤</span></div><p>Test cases generated</p><div class="metric-value" id="dashboardTestCases">0 <small>total</small></div><div class="mini-bars bars-blue" data-mini="testcases"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+                    <article class="overview-card"><div class="metric-top"><span class="metric-icon pink-icon">⚑</span></div><p>Bugs identified</p><div class="metric-value" id="dashboardBugs">0 <small>total</small></div><div class="mini-bars bars-pink" data-mini="bug"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+                    <article class="overview-card"><div class="metric-top"><span class="metric-icon green-icon">✓</span></div><p>Test pass rate</p><div class="metric-value" id="dashboardPassRate">0<small>%</small></div><div class="mini-bars bars-green" data-mini="passrate"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+                </div>
+
+                <div class="dashboard-columns">
+                    <article class="panel activity-panel">
+                        <div class="panel-heading"><div><h3>Testing activity</h3><p>Test execution trends over time</p></div><select aria-label="Activity time range" class="compact-select"><option>Last 7 days</option><option>Last 30 days</option></select></div>
+                        <div class="chart-legend"><span><i class="legend-violet"></i>Pass</span><span><i class="legend-muted"></i>Fail</span></div>
+                        <div class="activity-chart" id="dashboardActivityChart">
+                            <div class="chart-y-labels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div>
+                            <div class="chart-plot"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><svg id="activitySvg" viewBox="0 0 700 190" preserveAspectRatio="none" role="img" aria-label="Manually updated test status activity"></svg><div class="chart-x-labels" id="activityDays"></div></div>
+                        </div>
+                    </article>
+                    <article class="panel recent-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p>Your latest workspace updates</p></div><button class="icon-button subtle-icon" data-go="history" aria-label="View history">↗</button></div>
+                        <div class="activity-list" id="dashboardRecentActivity"></div><button class="full-link" data-go="history">View all activity <span>→</span></button>
+                    </article>
+                </div>
+                <div class="section-title-row tools-title"><div><h2>Quick access</h2><p>Pick up where you left off</p></div></div>
+                <div class="quick-grid">
+                    <button class="quick-card" data-go="analyzer"><span class="quick-icon violet-icon">⌕</span><span><strong>Analyze requirements</strong><small>Find gaps and ambiguities</small></span><b>→</b></button>
+                    <button class="quick-card" data-go="testcases"><span class="quick-icon blue-icon">▤</span><span><strong>Generate test cases</strong><small>Build coverage in seconds</small></span><b>→</b></button>
+                    <button class="quick-card" data-go="bugreport"><span class="quick-icon pink-icon">⚑</span><span><strong>Write a bug report</strong><small>Document issues clearly</small></span><b>→</b></button>
+                </div>
+            </section>
+
+            <section class="page" id="analyzer">
+                <div class="page-intro"><span class="eyebrow">AI-POWERED QA TOOL</span><h1>Requirement Analyzer</h1><p>Uncover gaps, clarify assumptions, and turn product requirements into actionable QA insights.</p></div>
+                <div class="tool-layout">
+                    <div class="panel form-panel">
+                        <div class="panel-heading tool-panel-heading"><div><h3>Analyze a requirement</h3><p>Paste a requirement or upload a text document to get started.</p></div><span class="tool-badge violet-icon">✦ AI</span></div>
+                        <div class="input-heading"><label for="requirement">Your requirement</label><span id="charCount">0 / 10000</span></div>
+                        <textarea id="requirement" maxlength="10000" placeholder="Example: A user can log in using an email address and password. If they enter incorrect credentials, they should see a helpful error message..."></textarea>
+                        <div class="upload-row"><input type="file" id="requirementFile" accept=".txt,.md,.csv" hidden><button class="upload-button" id="uploadBtn"><span>↑</span> Upload a document</button><small id="fileName">TXT, MD or CSV · max 10 MB</small></div>
+                        <div class="form-actions"><button class="secondary-btn" id="clearBtn">Clear</button><button class="primary-btn" id="analyzeBtn"><span>✦</span> Analyze requirement</button></div>
+                    </div>
+                    <div class="panel result-panel">
+                        <div class="panel-heading"><div><h3>Analysis results</h3><p id="resultStatus">Your structured QA insights will appear here.</p></div><span class="result-orb">✦</span></div>
+                        <div class="analysis-empty" id="analysisEmpty"><span class="empty-sparkle">✧</span><strong>Ready when you are</strong><p>Your requirement summary, functional and non-functional points, and clarification questions will show up here.</p></div>
+                        <pre id="output" class="analysis-output" hidden>No analysis generated yet.</pre>
+                        <div class="result-actions"><button class="secondary-btn" id="copyBtn">Copy results</button><button class="secondary-btn" id="exportBtn">Export .txt</button></div>
+                    </div>
+                </div>
+                <div class="hint-card"><span>✦</span><p><strong>Pro tip</strong> Include user roles, conditions, and expected outcomes for a more useful analysis.</p></div>
+            </section>
+
+            <section class="page" id="testcases">
+                <div class="page-intro"><span class="eyebrow">STRUCTURED TEST COVERAGE</span><h1>Test Case Generator</h1><p>Create clear, actionable test cases from a requirement or a selected analysis.</p></div>
+                <div class="panel form-panel generator-form">
+                    <div class="panel-heading"><div><h3>Set up your test cases</h3><p>Describe what you want to test. Generated cases are saved in your history.</p></div><span class="tool-badge blue-icon">▤</span></div>
+                    <label for="testcaseInput">Requirement or test scenario</label><textarea id="testcaseInput" placeholder="Paste a requirement or test scenario..."></textarea>
+                    <div class="form-actions"><span class="helper-text">We'll organize scenarios into readable test steps.</span><button class="primary-btn" id="testcaseBtn">✦ Generate test cases</button></div>
+                </div>
+                <div class="panel table-panel"><div class="panel-heading"><div><h3>Generated test cases <span class="count-pill" id="testcaseCount">0</span></h3><p>Update execution status manually. No tests are run automatically.</p></div><div class="result-actions"><button class="secondary-btn" id="copyCasesBtn">Copy</button><button class="secondary-btn" id="exportCasesBtn">↓ Export CSV</button></div></div>
+                    <div class="table-wrap"><table><thead><tr><th>TEST CASE ID</th><th>TEST SCENARIO</th><th>PRECONDITIONS</th><th>TEST STEPS</th><th>TEST DATA</th><th>EXPECTED RESULT</th><th>PRIORITY</th><th>STATUS</th></tr></thead><tbody id="testcaseRows"></tbody></table><p id="testcaseEmpty" class="no-results">Generate test cases from a requirement to see them here.</p></div>
+                </div>
+            </section>
+
+            <section class="page" id="bugreport">
+                <div class="page-intro"><span class="eyebrow">CLEARER BUGS, FASTER FIXES</span><h1>Bug Report Generator</h1><p>Capture the details your team needs to reproduce and resolve an issue.</p></div>
+                <div class="bug-layout">
+                    <div class="panel form-panel"><div class="panel-heading"><div><h3>Describe the issue</h3><p>Fields marked with * are recommended.</p></div><span class="tool-badge pink-icon">⚑</span></div>
+                        <label for="bugTitle">Bug title *</label><input id="bugTitle" class="text-input" placeholder="Short, descriptive summary">
+                        <label for="bugDescription">Description *</label><textarea id="bugDescription" class="short-textarea" placeholder="What happened? Include any useful context..."></textarea>
+                        <label for="bugSteps">Steps to reproduce</label><textarea id="bugSteps" class="short-textarea" placeholder="1. Go to...&#10;2. Select...&#10;3. Observe..."></textarea>
+                        <div class="two-fields"><div><label for="bugExpected">Expected result</label><textarea id="bugExpected" class="small-textarea" placeholder="What should happen?"></textarea></div><div><label for="bugActual">Actual result</label><textarea id="bugActual" class="small-textarea" placeholder="What happened instead?"></textarea></div></div>
+                        <div class="two-fields select-fields"><div><label for="bugSeverity">Severity</label><select id="bugSeverity"><option>Major</option><option>Critical</option><option>Moderate</option><option>Minor</option></select></div><div><label for="bugPriority">Priority</label><select id="bugPriority"><option>High</option><option>Urgent</option><option>Medium</option><option>Low</option></select></div></div>
+                        <div class="form-actions"><button class="secondary-btn" id="clearBugBtn">Clear form</button><button class="primary-btn" id="generateBugBtn">Create bug report <span>→</span></button></div>
+                    </div>
+                    <div class="panel bug-preview"><div class="panel-heading"><div><h3>Report preview</h3><p>Formatted and ready to share</p></div><div><button class="icon-button subtle-icon" id="copyBugBtn" aria-label="Copy bug report">▣</button><button class="icon-button subtle-icon" id="exportBugBtn" aria-label="Export bug report">↓</button></div></div>
+                        <div id="bugPreviewContent" class="preview-content"><div class="preview-placeholder"><span>⚑</span><strong>Your report will take shape here</strong><p>Fill in the issue details and create a report preview.</p></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page" id="summary">
+                <div class="page-intro"><span class="eyebrow">QUALITY AT A GLANCE</span><h1>Test Summary</h1><p>See how your test runs are progressing and where to focus next.</p></div>
+                <div class="summary-banner"><span class="summary-check" id="summaryStatusIcon">◷</span><div><strong id="summaryStatusTitle">No test cases yet</strong><p id="summaryStatusText">Generate test cases and update their status to build a project summary.</p></div><span class="run-date" id="summaryRunDate">No runs</span></div>
+                <div class="summary-stats">
+                    <article class="summary-stat"><span class="summary-stat-icon violet-icon">▤</span><p>Total test cases</p><strong id="summaryTotal">0</strong><small>Saved test cases</small></article>
+                    <article class="summary-stat"><span class="summary-stat-icon green-icon">✓</span><p>Passed</p><strong id="summaryPassed">0</strong><small class="good-text" id="summaryPassedPercent">0% of completed tests</small></article>
+                    <article class="summary-stat"><span class="summary-stat-icon pink-icon">×</span><p>Failed</p><strong id="summaryFailed">0</strong><small class="attention-text" id="summaryFailedPercent">0 need attention</small></article>
+                    <article class="summary-stat"><span class="summary-stat-icon amber-icon">◷</span><p>Pending</p><strong id="summaryPending">0</strong><small>Not yet manually marked</small></article>
+                </div>
+                <div class="dashboard-columns summary-charts">
+                    <article class="panel"><div class="panel-heading"><div><h3>Overall testing progress</h3><p>Execution status across saved test cases</p></div><span class="period-label">Current records</span></div><div class="progress-content" id="summaryProgress"><div class="progress-ring" id="summaryRing"><div><strong id="summaryPassRate">0<span>%</span></strong><small>passed</small></div></div>                    <div class="progress-legend"><div><span><i class="legend-violet"></i>Pass</span><strong><span id="summaryLegendPassed">0</span> <small id="summaryLegendPassedPct">0%</small></strong></div><div><span><i class="legend-pink"></i>Fail</span><strong><span id="summaryLegendFailed">0</span> <small id="summaryLegendFailedPct">0%</small></strong></div><div><span><i class="legend-amber"></i>Pending</span><strong><span id="summaryLegendPending">0</span> <small id="summaryLegendPendingPct">0%</small></strong></div><div class="legend-total"><span>Total test cases</span><strong id="summaryLegendTotal">0</strong></div></div></div></article>
+                    <article class="panel"><div class="panel-heading"><div><h3>Test status distribution</h3><p>Based on manually updated test statuses</p></div></div><div class="bar-chart" id="summaryStatusChart"></div><div class="chart-legend"><span><i class="legend-violet"></i>Pass</span><span><i class="legend-pink"></i>Fail</span><span><i class="legend-amber"></i>Pending</span></div></article>
+                </div>
+                <article class="panel summary-notes"><div class="panel-heading"><div><h3>Observations & recommendations</h3><p>Calculated from manually updated test case statuses</p></div></div><p id="summaryRecommendations">There are no saved test cases to summarize yet.</p></article>
+            </section>
+
+            <section class="page" id="history">
+                <div class="page-intro"><span class="eyebrow">YOUR WORK, ALL IN ONE PLACE</span><h1>History</h1><p>Find and revisit your recent analyses and generated QA assets.</p></div>
+                <div class="panel history-panel"><div class="history-toolbar"><label class="history-search"><span>⌕</span><input id="historySearch" type="search" placeholder="Search your activity..."></label><select id="historyFilter" class="compact-select"><option value="all">All activity</option><option value="analysis">Requirement analysis</option><option value="scenarios">Test scenarios</option><option value="testcases">Test cases</option><option value="document">QA documents</option><option value="bug">Bug reports</option><option value="impact">Change impact</option><option value="prompt">Prompt evaluations</option></select></div>
+                    <div class="history-table-wrap"><table><thead><tr><th>ACTIVITY</th><th>TYPE</th><th>DATE</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="historyRows"></tbody></table><p id="noHistoryResults" class="no-results">No saved activity yet. Generated results will appear here.</p></div>
+                    <div class="table-footer"><span id="historyCount">Showing 0 activities</span><button class="text-button" id="clearHistoryBtn">Clear all history</button></div>
+                </div>
+            </section>
+
+            <section class="page" id="settings">
+                <div class="page-intro"><span class="eyebrow">MAKE IT YOUR WORKSPACE</span><h1>Settings</h1><p>Manage your profile and preferences for a more comfortable workflow.</p></div>
+                <div class="settings-layout"><div class="settings-tabs"><button class="settings-tab" data-settings="profile">Profile</button><button class="settings-tab" data-settings="preferences">Preferences</button><button class="settings-tab active" data-settings="api">API configuration</button></div>
+                    <div class="settings-content">
+                        <section class="panel settings-section" id="settings-profile"><div class="panel-heading"><div><h3>Profile information</h3><p>Update your personal details and workspace identity.</p></div></div><div class="profile-edit"><span class="avatar profile-avatar">KP</span><div><strong>Workspace profile</strong><p>Your initials are shown as the profile avatar.</p></div></div><div class="two-fields"><div><label for="profileName">Full name</label><input class="text-input" id="profileName" value="Kimaya Pawar"></div><div><label for="profileEmail">Email address</label><input class="text-input" id="profileEmail" type="email" value="kimaya@example.com"></div></div>                        <div class="settings-save"><button class="primary-btn" id="saveProfileBtn">Save changes</button></div></section>
+                        <section class="panel settings-section" id="settings-preferences"><div class="panel-heading"><div><h3>General preferences</h3><p>Set up the workspace to match how you work.</p></div></div><div class="preference-row"><div><strong>Appearance</strong><p>The current interface uses the dark violet theme.</p></div><span class="tool-badge violet-icon">Dark violet</span></div><div class="preference-row"><div><strong>Default test priority</strong><p>Choose the initial priority for generated test cases.</p></div><select class="compact-select" id="defaultPriority"><option>Medium</option><option>High</option><option>Low</option></select></div><div class="settings-save"><button class="primary-btn" id="savePreferencesBtn">Save preferences</button></div></section>
+                        <section class="panel settings-section active" id="settings-api"><div class="panel-heading"><div><h3>API configuration</h3><p>API keys remain on the backend and are never shown in this page.</p></div><span class="tool-badge amber-icon" id="apiStatusLabel">Checking...</span></div><div class="api-notice"><span>ⓘ</span><p id="apiStatusDescription">Checking whether the local backend and Gemini configuration are available.</p></div><label for="apiProvider">Provider</label><select id="apiProvider"><option value="Google Gemini">Google Gemini</option></select><label for="apiBaseUrl">Backend base URL</label><input class="text-input" id="apiBaseUrl" type="url" value="http://localhost:5000" placeholder="http://localhost:5000"><div class="settings-save"><button class="primary-btn" id="saveApiSettingsBtn">Save API settings</button><span class="helper-text">Set GEMINI_API_KEY in backend/.env, then restart the backend.</span></div></section>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page" id="scenarios"><div class="page-intro"><span class="eyebrow">MORE QA TOOLS</span><h1>Test Scenario Generator</h1><p>Explore positive, negative, and edge-case coverage for a requirement.</p></div><div class="panel form-panel"><label for="scenarioInput">Software requirement</label><textarea id="scenarioInput" placeholder="Enter a software requirement..."></textarea><button class="primary-btn" id="scenarioBtn">Generate scenarios</button><div class="result-box"><div class="panel-heading"><h3>Generated scenarios</h3><div class="result-actions"><button class="secondary-btn" id="copyScenariosBtn">Copy</button><button class="secondary-btn" id="exportScenariosBtn">Export .txt</button></div></div><pre id="scenarioOutput">No scenarios generated yet.</pre></div></div></section>
+            <section class="page" id="documents"><div class="page-intro"><span class="eyebrow">MORE QA TOOLS</span><h1>QA Document Generator</h1><p>Draft structured QA documentation for your project.</p></div><div class="panel form-panel"><label for="documentType">Document type</label><select id="documentType"><option value="">Choose a document</option><option value="Test Plan">Test Plan</option><option value="Requirement Traceability Matrix (RTM)">Requirement Traceability Matrix (RTM)</option><option value="Risk Analysis">Risk Analysis</option><option value="Test Summary Report">Test Summary Report</option><option value="Bug Report">Bug Report</option></select><label for="documentInput">Relevant information</label><textarea id="documentInput" placeholder="Enter requirements or relevant QA information..."></textarea><button class="primary-btn" id="documentBtn">Generate document</button><div class="result-box"><div class="panel-heading"><h3>Generated document</h3><div class="result-actions"><button class="secondary-btn" id="copyDocumentBtn">Copy</button><button class="secondary-btn" id="exportDocumentBtn">Export .txt</button></div></div><pre id="documentOutput">No document generated yet.</pre></div></div></section>
+            <section class="page" id="impact"><div class="page-intro"><span class="eyebrow">MORE QA TOOLS</span><h1>Change Impact Analyzer</h1><p>Compare requirement versions and identify potentially affected QA assets.</p></div><div class="panel form-panel"><label for="oldRequirement">Previous requirement (required)</label><textarea id="oldRequirement" placeholder="Enter previous requirement..."></textarea><label for="newRequirement">Updated requirement (required)</label><textarea id="newRequirement" placeholder="Enter updated requirement..."></textarea><button class="primary-btn" id="impactBtn">Analyze changes</button><div class="result-box"><div class="panel-heading"><h3>Impact analysis</h3><div class="result-actions"><button class="secondary-btn" id="copyImpactBtn">Copy</button><button class="secondary-btn" id="exportImpactBtn">Export .txt</button></div></div><pre id="impactOutput">No impact analysis generated yet.</pre></div></div></section>
+            <section class="page" id="promptlab"><div class="page-intro"><span class="eyebrow">MORE QA TOOLS</span><h1>Prompt Lab</h1><p>Explore and refine prompts for better QA outputs.</p></div><div class="panel form-panel"><label for="promptFeature">Prompt category</label><select id="promptFeature"><option value="Requirement Analyzer">Requirement Analyzer</option><option value="Test Scenario Generator">Test Scenario Generator</option><option value="Test Case Generator">Test Case Generator</option><option value="QA Document Generator">QA Document Generator</option><option value="Change Impact Analyzer">Change Impact Analyzer</option></select><label for="promptInput">Your prompt</label><textarea id="promptInput" placeholder="Enter or refine your prompt..."></textarea><button class="primary-btn" id="promptBtn">Evaluate prompt</button><div class="result-box"><div class="panel-heading"><h3>Prompt evaluation</h3><div class="result-actions"><button class="secondary-btn" id="copyPromptBtn">Copy</button><button class="secondary-btn" id="exportPromptBtn">Export .txt</button></div></div><pre id="promptOutput">No prompt evaluation generated yet.</pre></div></div></section>
+
+            <footer class="app-footer"><span>✦ TestPilot AI</span><span>Making quality a habit, not a hurdle.</span><span>Version 1.0</span></footer>
+        </div>
+    </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
